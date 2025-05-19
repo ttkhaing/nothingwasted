@@ -1,0 +1,14 @@
+<%= link_to "Browse Items", items_path, class: "btn btn-success mt-3" %>
+
+<h1>All Items</h1>
+<%= link_to "New Item", new_item_path, class: "btn btn-primary" %>
+<ul class="list-group mt-3">
+  <% @items.each do |item| %>
+    <li class= "list-group-item">
+      <strong><%= link_to item.title, item_path(item) %></strong>
+      <smaill class="text-muted"> by <%= item.user.email %></small>
+    </li>
+  <% end %>
+</ul>
+
+

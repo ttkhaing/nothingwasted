@@ -1,0 +1,5 @@
+<h2><%= action_name == "new" ? "New Item" : "Edit Item" %></h2>
+
+<%= render "form", item: @item %>
+
+<%= link_to "Back", items_path, class: "btn btn-link" %>
