@@ -1,3 +1,7 @@
+<% if @item.image.attached? %>
+  <%= image_tag @item.image, class: "img-fluid mb-3" %>
+<% end %>
+
 <h2><%= @item.title %></h2>
 <p><%= @item.description %></p>
 <p><small>Posted by <%= @item.user.email %></small></p>

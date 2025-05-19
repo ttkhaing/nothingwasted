@@ -1,0 +1,20 @@
+<%= form_with(model: @item, local: true) do |f| %>
+  <div class="mb-3">
+    <%= f.label :image, "画像をアップロード" %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+  
+  <div class="mb-3">
+    <%= f.label :title, "タイトル" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :description, "内容" %>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+
+  <%= f.submit class: "btn btn-success" %>
+<% end %>
+
+

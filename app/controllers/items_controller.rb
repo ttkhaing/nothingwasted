@@ -1,10 +1,10 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user!, only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.all
+    @items = Item.all.order(created_at: :desc)
   end
 
   def show
@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
   def create 
     @item = current_user.items.build(item_params)
     if @item.save
-      redirect_to @item, notice: "Item created successfully!"
+      redirect_to @item, notice: "投稿が完了しました！"
     else
       render :new
     end
@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to @item, notice: "Item updated!"
+      redirect_to @item, notice: "更新しました！"
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to items_path, notice: "Item deleted!"
+    redirect_to items_path, notice: "削除しました！"
   end
 
   private
@@ -46,10 +46,10 @@ class ItemsController < ApplicationController
   end
 
   def authorize_user!
-    redirect_to items_path, alert: "Not authorized" unless @item.user == current_user
+    redirect_to items_path, alert: "権限がありません！" unless @item.user == current_user
   end
 
   def item_params
-    params.require(:item).permit(:title, :description)
+    params.require(:item).permit(:title, :description, :image)
   end
 end
