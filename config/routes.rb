@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'mypage', to: 'users#show'
+  get 'mypage/edit', to: 'users#edit', as: :edit_mypage
+  patch 'mypage', to: 'users#update'
   root "homes#top"
   devise_for :users
    get "home/about" => "homes#about", as: "about"
