@@ -1,2 +1,90 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NothingWasted</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <h1><%= link_to 'NothingWasted', root_path %></h1>
+        </div>
+        <ul class="nav-links">
+          <% if user_signed_in? %>
+            <li><%= link_to 'Dashboard', dashboard_path %></li>
+            <li><%= link_to 'My Account', edit_user_registration_path %></li>
+            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+            <li><%= link_to 'Login', new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h2>Because Mother Earth is burned out...</h2>
+        <p>NothingWasted is a daily gratitude and sharing platform. Let’s cherish what we already have and reduce waste—together.</p>
+        <% if user_signed_in? %>
+          <%= link_to "Go to Dashboard", dashboard_path, class: "btn" %>
+        <% else %>
+          <%= link_to "Get Started", new_user_registration_path, class: "btn" %>
+        <% end %>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; <%= Time.current.year %> NothingWasted. All rights reserved.</p>
+    </footer>
+
+    <style>
+      body {
+        font-family: 'Helvetica Neue', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f5f5f5;
+        color: #333;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        background-color: #2e7d32;
+        padding: 1rem 2rem;
+        color: white;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 1rem;
+      }
+      .hero {
+        text-align: center;
+        padding: 5rem 2rem;
+        background: #c8e6c9;
+      }
+      .hero .btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background-color: #2e7d32;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 2rem;
+      }
+      footer {
+        text-align: center;
+        padding: 1rem;
+        background-color: #e0e0e0;
+        margin-top: 2rem;
+      }
+    </style>
+  </body>
+</html>
