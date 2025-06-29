@@ -1,11 +1,16 @@
 <%= form_with(model: item, local: true) do |form| %>
   <div class="mb-3">
-    <%= form.label :title %>
+    <%= form.label :title, "品物" %>
     <%= form.text_field :title, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :description %>
+    <%= f.label :image, "画像をアップロード" %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, "商品の詳細" %>
     <%= form.text_area :description, class: "form-control" %>
   </div>
   
